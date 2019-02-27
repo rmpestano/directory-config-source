@@ -1,0 +1,34 @@
+== Directory Config source
+
+image:https://travis-ci.org/rmpestano/directory-config-source.svg[Build Status (Travis CI), link=https://travis-ci.org/rmpestano/directory-config-source]
+
+This repository contains an example of a custom https://www.phillip-kruger.com/post/microprofile_config/[MicroProfile config source^] which reads properties from a file inside a directory.
+ 
+=== Usage
+
+
+*Given* a file present in /data/application.properties 
+
+*And* the file has the following content:
+
+----
+config.example=example value
+----
+ 
+*When* the property is injected wih following code:
+
+[source,java,linenums]
+----
+    @Inject
+    @ConfigProperty(name = "config.example")
+    private Provider<String> property;
+----
+
+*Then* the value `example value` should be retrieved
+
+IMPORTANT: Any change to the file will automatically make update the properties.
+
+TIP: This is specially useful in a container environment (e.g kubernetes) where pods can read properties from a file inside a volume, any change on this file affects configuration in `all pods`.
+
+ 
+
