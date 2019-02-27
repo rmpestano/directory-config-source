@@ -62,10 +62,11 @@ public class DirectoryConfigSourceTest {
 	}
 
 	@Test
-	public void shouldGetPropertyUpdatedValue() {
+	public void shouldGetPropertyUpdatedValue() throws InterruptedException {
 		assertNotNull(property.get());
 		assertEquals("example value", property.get());
 		replaceConfigFileContent();
+		Thread.sleep(500);
 		assertEquals("example value modified", property.get());
 	}
 
