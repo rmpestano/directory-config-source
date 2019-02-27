@@ -50,7 +50,6 @@ public class DirectoryConfigSource implements ConfigSource {
         if(!new File(configFilePath).exists()) {
             throw new RuntimeException(String.format("Directory Config source not initialized becase directory %s does not exists", configFilePath));
         }
-        
         configPropertiesMap = new HashMap<>();
         Path configDirectory = Paths.get(new File(configFilePath).getParentFile().getPath());//directory to watch for changes
         try {
@@ -79,6 +78,7 @@ public class DirectoryConfigSource implements ConfigSource {
 
     private void loadProperties(String configFilePath) throws RuntimeException {
         LOG.log(Level.INFO,"Loading properties...");
+        configPropertiesMap.clear();
         try (final InputStream inputStream = new FileInputStream(new File(configFilePath))) {
             Properties properties = new Properties();
             properties.load(inputStream);

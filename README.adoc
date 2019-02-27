@@ -1,3 +1,18 @@
+:page-layout: base
+:source-language: java
+:icons: font
+:linkattrs:
+:sectanchors:
+:sectlink:
+:numbered:
+:doctype: book
+:toc: preamble
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+
 == Directory Config source
 
 image:https://travis-ci.org/rmpestano/directory-config-source.svg[Build Status (Travis CI), link=https://travis-ci.org/rmpestano/directory-config-source]
@@ -27,6 +42,8 @@ config.example=example value
 *Then* the value `example value` should be retrieved
 
 IMPORTANT: Any change to the file will automatically make update the properties.
+
+NOTE: The file path can be changed via Env or system property named `DirectoryConfigSource.filePath`  
 
 TIP: This is specially useful in a container environment (e.g kubernetes) where pods can read properties from a file inside a volume, any change on this file affects configuration in `all pods`.
 

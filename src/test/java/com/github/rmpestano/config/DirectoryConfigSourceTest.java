@@ -64,10 +64,11 @@ public class DirectoryConfigSourceTest {
 	@Test
 	public void shouldGetPropertyUpdatedValue() {
 		assertNotNull(property.get());
-		assertEquals(property.get(), "example value");
+		assertEquals("example value", property.get());
 		replaceConfigFileContent();
-		assertEquals(property.get(), "example value modified");
+		assertEquals("example value modified", property.get());
 	}
+
 
 	private void replaceConfigFileContent() {
 		String filePath = System.getProperty("DirectoryConfigSource.filePath");
