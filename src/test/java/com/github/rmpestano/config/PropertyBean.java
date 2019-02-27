@@ -23,21 +23,14 @@ import javax.inject.Inject;
 @Singleton
 public class PropertyBean implements Serializable {
 
-	@Inject
-	DirectoryConfigSource directoryConfigSource;
-
 	@PostConstruct 
 	public void initDirectoryConfigSourceProperty() {
 		try {
-			Field configPropertiesMapField = directoryConfigSource.getClass().getDeclaredField("configPropertiesMap");
-			configPropertiesMapField.setAccessible(true);
-			configPropertiesMapField.set(directoryConfigSource, null); // force re-initialization of configMap because the test runs after Config source initialization (before bean discovery)
 			try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
 					getClass().getResourceAsStream("/META-INF/file")))) {
 				String property = bufferedReader.readLine();
 				System.setProperty("DirectoryConfigSource.filePath", property);
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
